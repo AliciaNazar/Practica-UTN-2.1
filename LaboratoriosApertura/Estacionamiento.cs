@@ -19,11 +19,11 @@ namespace LaboratoriosApertura
             {
                 EstacionarEnEspacioVip(vehiculo);
             }
-            else if (EspaciosEst1NoVipsDisponibles() && vehiculo.dueño != null) //&& vehiculo.dueño.vip && !EspaciosVipDisponibles()
+            else if (EspaciosEst1NoVipsDisponibles() && vehiculo.dueño != null) //Si no es vip o se acabaron los espacios vip
             {
                 EstacionarEnEst1NoVip(vehiculo);
             }
-            else if (!EspaciosEst1NoVipsDisponibles() && vehiculo.dueño != null)
+            else if (!EspaciosEst1NoVipsDisponibles() && vehiculo.dueño != null) //si no se pudo estacionar en el 1
             {
                 EstacionarEnEstacionamiento2(vehiculo);
             }
@@ -137,22 +137,17 @@ namespace LaboratoriosApertura
 
 
 
-        public void RemoverVehiculo(int opcion, string valor)
+        public void RemoverVehiculo(string valor)
         { 
-            bool vehiculoRemovido = RemoverVehiculoDeEst1(opcion, valor);
-            if (vehiculoRemovido == false) { RemoverVehiculoDeEst2(opcion,valor); }
+            bool vehiculoRemovido = RemoverVehiculoDeEst1(valor);
+            if (vehiculoRemovido == false) { RemoverVehiculoDeEst2(valor); }
         }
-        private bool RemoverVehiculoDeEst1(int opcion, string valor)
+        private bool RemoverVehiculoDeEst1(string valor)
         {
             bool vehiculoRemovido = false;
             for (int i = 0; i < estacionamiento1.Length; i++)
             {
-                if (estacionamiento1[i] != null && opcion == 1 && estacionamiento1[i].matricula == valor)
-                {
-                    estacionamiento1[i] = null;
-                    vehiculoRemovido = true;
-                }
-                else if (estacionamiento1[i] != null && opcion == 2 && estacionamiento1[i].dueño != null && estacionamiento1[i].dueño.dni == valor)
+                if (estacionamiento1[i] != null && (estacionamiento1[i].matricula == valor || estacionamiento1[i].dueño.dni == valor))
                 {
                     estacionamiento1[i] = null;
                     vehiculoRemovido = true;
@@ -160,15 +155,11 @@ namespace LaboratoriosApertura
             }
            return vehiculoRemovido;
         }
-        private void RemoverVehiculoDeEst2(int opcion, string valor)
+        private void RemoverVehiculoDeEst2(string valor)
         {
-            for (int i = estacionamiento2.Count - 1; i >= 0; i--) // debo usar un if else... asi si no lo removí del 1, recien lo busco en el 2
+            for (int i = estacionamiento2.Count - 1; i >= 0; i--)
             {
-                if (estacionamiento2[i].vehiculo != null && opcion == 1 && estacionamiento2[i].vehiculo.matricula == valor)
-                {
-                    estacionamiento2[i].vehiculo = null;
-                }
-                else if (estacionamiento2[i].vehiculo != null &&  opcion == 2 && estacionamiento2[i] != null && estacionamiento2[i].vehiculo.dueño != null && estacionamiento2[i].vehiculo.dueño.dni == valor)
+                if (estacionamiento2[i].vehiculo != null && (estacionamiento2[i].vehiculo.matricula == valor || estacionamiento2[i].vehiculo.dueño.dni == valor))
                 {
                     estacionamiento2[i].vehiculo = null;
                 }

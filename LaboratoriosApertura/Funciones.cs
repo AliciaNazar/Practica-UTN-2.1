@@ -56,35 +56,14 @@ namespace LaboratoriosApertura
             return listaTamaños;
         }
 
-        public static bool PrimerValorMayorIgual(string tamaño1,string tamaño2)
-        {
-            List<string> lista = GenerarListaTamaños();
-            int valorRelativo1 = 0;
-            int valorRelativo2 = 0;
-            
-            for (int i = 0;i<lista.Count;i++)
-            {
-                if (lista[i] == tamaño1)
-                {
-                    valorRelativo1 = i;
-                }
-                if (lista[i] == tamaño2)
-                {
-                    valorRelativo2 = i;
-                }
-            }
-            if (valorRelativo1>=valorRelativo2)
-            {
-                return true;
-            }
-            else { return false; }
-        }
+        
 
         public static void OptimizarAlmacenamiento(List<EspacioEstacionamiento2> estacionamiento2)
         {
             List<Vehiculo> espacioTemporal = GenerarCopiaDeLista(estacionamiento2);
             ReubicarVehiculos(espacioTemporal,estacionamiento2);
         }
+
 
         private static void ReubicarVehiculos(List<Vehiculo> espacioTemporal, List<EspacioEstacionamiento2> estacionamiento2)
         {
@@ -115,6 +94,30 @@ namespace LaboratoriosApertura
                 }
             }
             return espacioTemporal;
+        }
+
+        public static bool PrimerValorMayorIgual(string tamaño1, string tamaño2)
+        {
+            List<string> lista = GenerarListaTamaños();
+            int valorRelativo1 = 0;
+            int valorRelativo2 = 0;
+
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (lista[i] == tamaño1)
+                {
+                    valorRelativo1 = i;
+                }
+                if (lista[i] == tamaño2)
+                {
+                    valorRelativo2 = i;
+                }
+            }
+            if (valorRelativo1 >= valorRelativo2)
+            {
+                return true;
+            }
+            else { return false; }
         }
     }
 }

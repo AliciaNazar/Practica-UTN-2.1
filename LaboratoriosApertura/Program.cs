@@ -13,27 +13,27 @@ while (continuar)
     string opcion = Console.ReadLine();
     switch (opcion)
     {
-        case "1": //Listar todos los vehículos
+        case "1":
             estacionamiento.ListarVehiculos();
             break;
-        case "2": //Agregar un nuevo vehículo
+        case "2":
             Vehiculo vehiculo = new Vehiculo();
             estacionamiento.AgregarVehiculo(vehiculo);
             break;
-        case "3": //Remover un vehículo en especial, dado su número de matrícula
+        case "3": 
             Console.WriteLine("Ingrese la matrícula del vehículo a remover: ");
             string matricula = Console.ReadLine();
-            estacionamiento.RemoverVehiculo(1, matricula);
+            estacionamiento.RemoverVehiculo(matricula);
             break;
-        case "4": //Remover un vehículo en especial, dado el dni de su dueño  
+        case "4":  
             Console.WriteLine("Ingrese el dni del dueño del vehículo a remover");
             string dni = Console.ReadLine();
-            estacionamiento.RemoverVehiculo(2, dni);
+            estacionamiento.RemoverVehiculo(dni);
             break;
-        case "5": //Remover una cantidad aleatoria de vehículos.
+        case "5": 
             estacionamiento.RemoverVehiculosAleatorios();
             break;
-        case "6": //Optimizar el espacio  
+        case "6": 
             Funciones.OptimizarAlmacenamiento(estacionamiento.estacionamiento2);
             break;
         case "7": //salir
